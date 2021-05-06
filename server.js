@@ -15,6 +15,7 @@ let dbClient;
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')))
 
+// READ
 app.get('/people', async (req, res) => {
   try {
     const result = await dbClient.query('SELECT * FROM people');
@@ -24,6 +25,42 @@ app.get('/people', async (req, res) => {
     res.send("ERROR!");
   }
   
+})
+
+// CREATE
+app.post('/people', async (req, res) => {
+  try {
+    // let person = req.
+    // await dbClient.query(`INSERT INTO people VALUES (${person.id}, '${person.name}', '${person.height}', '${person.gender}', '${person.birth_year}');`);
+    res.send({"result": "ok"});
+  } catch (err) {
+    console.error(err);
+    res.send({"result": "failed"});
+  }
+})
+
+// UPDATE
+app.put('/people', async (req, res) => {
+  try {
+    // let person = req.
+    // await dbClient.query(`INSERT INTO people VALUES (${person.id}, '${person.name}', '${person.height}', '${person.gender}', '${person.birth_year}');`);
+    res.send({"result": "ok"});
+  } catch (err) {
+    console.error(err);
+    res.send({"result": "failed"});
+  }
+})
+
+// DELETE
+app.delete('/people', async (req, res) => {
+  try {
+    // let person = req.
+    // await dbClient.query(`INSERT INTO people VALUES (${person.id}, '${person.name}', '${person.height}', '${person.gender}', '${person.birth_year}');`);
+    res.send({"result": "ok"});
+  } catch (err) {
+    console.error(err);
+    res.send({"result": "failed"});
+  }
 })
 
 async function createTable() {
