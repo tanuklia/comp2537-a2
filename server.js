@@ -54,7 +54,7 @@ app.put('/people', async (req, res) => {
 
 // DELETE
 app.delete('/people', async (req, res) => {
-  try {}
+  try {
     // let person = req.
     // await dbClient.query(`INSERT INTO people VALUES (${person.id}, '${person.name}', '${person.height}', '${person.gender}', '${person.birth_year}');`);
     res.send({"result": "ok"});
