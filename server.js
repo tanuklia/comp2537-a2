@@ -3,6 +3,7 @@ const PORT = process.env.PORT || 5000;
 const express = require('express');
 const { Pool } = require('pg');
 const path = require('path');
+const app = express();
 
 const pool = new Pool({
   connectionString: DATABASE_URL,
@@ -12,7 +13,7 @@ const pool = new Pool({
 });
 
 let dbClient;
-const app = express();
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 // READ
@@ -29,15 +30,15 @@ app.get('/people', async (req, res) => {
 
 // CREATE
 app.post('/people', async (req, res) => {
-  try {
-    // let person = req.
-    // await dbClient.query(`INSERT INTO people VALUES (${person.id}, '${person.name}', '${person.height}', '${person.gender}', '${person.birth_year}');`);
-    res.send({"result": "ok"});
-  } catch (err) {
-    console.error(err);
-    res.send({"result": "failed"});
-  }
-})
+  const insertQuery = "INSERT INTO people list ?";
+  dbClient.query(insertQuery, req.body, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send("People Added to Database");
+    }
+  });
+});
 
 // UPDATE
 app.put('/people', async (req, res) => {
@@ -53,7 +54,7 @@ app.put('/people', async (req, res) => {
 
 // DELETE
 app.delete('/people', async (req, res) => {
-  try {}
+  try {
     // let person = req.
     // await dbClient.query(`INSERT INTO people VALUES (${person.id}, '${person.name}', '${person.height}', '${person.gender}', '${person.birth_year}');`);
     res.send({"result": "ok"});
